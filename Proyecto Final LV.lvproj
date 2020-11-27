@@ -10,7 +10,15 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
-		<Item Name="Dependencies" Type="Dependencies"/>
+		<Item Name="Abstract" Type="Folder" URL="../../HAL/Proyecto-Final/Abstract">
+			<Property Name="NI.DISK" Type="Bool">true</Property>
+		</Item>
+		<Item Name="Implementations" Type="Folder" URL="../../HAL/Proyecto-Final/Implementations">
+			<Property Name="NI.DISK" Type="Bool">true</Property>
+		</Item>
+		<Item Name="Dependencies" Type="Dependencies">
+			<Item Name="Serial Device Brand CB.ctl" Type="VI" URL="../../HAL GDS/Abstract/Serial Device/Serial Device Brand CB.ctl"/>
+		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
 </Project>
