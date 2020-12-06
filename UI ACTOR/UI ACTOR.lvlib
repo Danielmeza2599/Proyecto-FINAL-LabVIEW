@@ -6,6 +6,7 @@
 	<Item Name="Messages for this Actor" Type="Folder">
 		<Item Name="Read ADC UI Msg.lvclass" Type="LVClass" URL="../../UI ACTOR Messages/Read ADC UI Msg/Read ADC UI Msg.lvclass"/>
 		<Item Name="Select Channel Msg.lvclass" Type="LVClass" URL="../../UI ACTOR Messages/Select Channel Msg/Select Channel Msg.lvclass"/>
+		<Item Name="update VISA Msg.lvclass" Type="LVClass" URL="../../UI ACTOR Messages/update VISA Msg/update VISA Msg.lvclass"/>
 		<Item Name="Write and Read VISA Msg.lvclass" Type="LVClass" URL="../../UI ACTOR Messages/Write and Read VISA Msg/Write and Read VISA Msg.lvclass"/>
 	</Item>
 	<Item Name="UI ACTOR.lvclass" Type="LVClass" URL="../UI ACTOR.lvclass"/>
