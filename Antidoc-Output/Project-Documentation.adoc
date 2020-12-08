@@ -1,0 +1,787 @@
+= Proyecto Final
+Daniel Meza
+:doctype: book
+:toc: 
+:imagesdir: Images
+:sectnums: 
+:toclevels: 3
+:chapter-label: Section
+
+== Project description
+
+No description found (add content in project description)
+
+== Code component descriptions
+
+=== DQMH(R) modules
+
+This section describes DQMH(R) module responsibilities and relationships.
+
+==== Preamble
+
+A DQMH module is the main component of an architecture based on DQMH(R) framework. A DQMH module is used to implement a section of the application that has one responsibility.
+
+DQMH(R) framework defines two different type of DQMH module.  
+
+====
+*Singleton:*
+
+A Singleton DQMH module can have only one instance running at any given time.
+====
+
+====
+*Cloneable:*
+
+A Cloneable DQMH module can have one or multiple instances running in parallel.
+====
+
+DQMH(R) framework defines two different ways to carry data throughout the application and with both other DQMH modules and non-DQMH based code.
+
+====
+*Request events:*
+
+A request is a code that fires an event requesting the DQMH module to do something. Multiple locations in the code can send events to the DQMH module.
+
+Request events are many-to-one.
+
+Requests are usually named using imperative tense.
+====
+
+====
+*Broadcast events:*
+
+A broadcast is a code that fires an event broadcasting that the DQMH module did something. Multiple Event Structures can register to handle the Broadcast Events.
+
+Broadcast Events are one-to-many.
+
+Broadcasts are usually named using past tense or passive voice.
+====
+
+NOTE: Refer to the DQMH(R) framework official http://delacor.com/documentation/dqmh-html/[documentation] to find more details on how the framework works
+
+
+The following section gives you details on the project architecture relying on this framework.
+It gives you an overview of the modules' interaction and detailed information on each module.
+
+Graphs used in this section have the following legend:
+
+*Components:*
+
+
+[graphviz, format="png", align="center"]
+....
+digraph G931875 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"DQMH module / Lvlib"[color=black shape=component]
+"Vi"[color=skyblue shape=note]
+}
+....
+
+*Events:*
+
+[graphviz, format="png", align="center"]
+....
+digraph G675689 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+" "[color=white shape=box]
+"  "[color=white shape=box]
+"   "[color=white shape=box]
+"    "[color=white shape=box]
+" " -> "  " [label="Request to a DQMH module" dir=both color=forestgreen  arrowhead=normal arrowtail=none style=filled penwidth=1];
+"   " -> "    " [label="Broadcast from a DQMH module" dir=both color=goldenrod  arrowhead=normal arrowtail=none style=dashed penwidth=1];
+}
+....
+
+*Start and Stop module callers:*
+
+[graphviz, format="png", align="center"]
+....
+digraph G614038 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"Start Module
+caller"[color=black shape=component]
+"Start Module"[color=yellowgreen shape=note]
+"Start Module" -> "Start Module
+caller" [label="Called by" dir=both color=yellowgreen  arrowhead=odot arrowtail=inv style=filled penwidth=1];
+}
+....
+
+[graphviz, format="png", align="center"]
+....
+digraph G248317 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+"Stop Module
+caller"[color=black shape=component]
+"Stop Module"[color=tomato shape=note]
+"Stop Module" -> "Stop Module
+caller" [label="Called by" dir=both color=tomato  arrowhead=odot arrowtail=inv style=dotted penwidth=1];
+}
+....
+
+
+==== Modules overview
+
+This project contains the following modules.
+
+.Modules list
+|===
+|Singleton|Cloneable
+
+|===
+
+This graph represents the links between all DQMH modules.
+
+[graphviz, format="png", align="center"]
+....
+digraph G241997 {
+rankdir=LR;
+edge[dir=both color=black  arrowhead=normal arrowtail=none style=filled penwidth=1]
+node[color=black shape=box]
+}
+....
+
+
+=== Libraries
+
+This section describes the libraries contained in the project.
+
+==== UI ACTOR.lvlib
+
+No description found (add content in lvlib description)
+
+
+=== Classes
+
+This section describes the classes contained in the project.
+
+==== Serial Device.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== ARDUINO.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Cypress.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== NXP.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== TI.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Read ADC UI Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Select Channel Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== update VISA Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== Write and Read VISA Msg.lvclass
+
+No description found (add content in lvlib description)
+
+
+==== UI ACTOR.lvclass
+
+No description found (add content in lvlib description)
+
+
+== VI descriptions
+
+=== DQMH(R) modules
+
+This section describes DQMH(R) modules events.
+
+=== Libraries
+
+This section describes libraries public VIs.
+
+==== UI ACTOR.lvlib
+
+===== UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Send Read ADC UI.vi
+
+:imgpath: UI ACTOR.lvlib_Read ADC UI Msg.lvclass_Send Read ADC UI.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Send Read ADC UI.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_Read ADC UI Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== UI ACTOR.lvlib:Select Channel Msg.lvclass:Send Select Channel.vi
+
+:imgpath: UI ACTOR.lvlib_Select Channel Msg.lvclass_Send Select Channel.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Select Channel Msg.lvclass:Send Select Channel.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:Select Channel Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_Select Channel Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Select Channel Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== UI ACTOR.lvlib:update VISA Msg.lvclass:Send update VISA.vi
+
+:imgpath: UI ACTOR.lvlib_update VISA Msg.lvclass_Send update VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:update VISA Msg.lvclass:Send update VISA.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:update VISA Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_update VISA Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:update VISA Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Send Write and Read VISA.vi
+
+:imgpath: UI ACTOR.lvlib_Write and Read VISA Msg.lvclass_Send Write and Read VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Send Write and Read VISA.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_Write and Read VISA Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC UI.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Read ADC UI.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC UI.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Select Channel.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Select Channel.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Select Channel.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:update VISA.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_update VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:update VISA.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Status Puerto COM.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Status Puerto COM.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Status Puerto COM.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Write and Read VISA.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Write and Read VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Write and Read VISA.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Read Serial Device.lvclass.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Read Serial Device.lvclass.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Read Serial Device.lvclass.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Write Serial Device.lvclass.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Write Serial Device.lvclass.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Write Serial Device.lvclass.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Read ADC.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+=== Classes
+
+This section describes classes public VIs.
+
+==== Serial Device.lvclass
+
+===== Serial Device.lvclass:Read Serial Device Brand.vi
+
+:imgpath: Serial Device.lvclass_Read Serial Device Brand.vi.png
+image::{imgpath}[Serial Device.lvclass:Read Serial Device Brand.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Write Serial Device Brand.vi
+
+:imgpath: Serial Device.lvclass_Write Serial Device Brand.vi.png
+image::{imgpath}[Serial Device.lvclass:Write Serial Device Brand.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Read VISA Com Port.vi
+
+:imgpath: Serial Device.lvclass_Read VISA Com Port.vi.png
+image::{imgpath}[Serial Device.lvclass:Read VISA Com Port.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Write VISA Com Port.vi
+
+:imgpath: Serial Device.lvclass_Write VISA Com Port.vi.png
+image::{imgpath}[Serial Device.lvclass:Write VISA Com Port.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:READ ADC v2.vi
+
+:imgpath: Serial Device.lvclass_READ ADC v2.vi.png
+image::{imgpath}[Serial Device.lvclass:READ ADC v2.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:readadcv1.vi
+
+:imgpath: Serial Device.lvclass_readadcv1.vi.png
+image::{imgpath}[Serial Device.lvclass:readadcv1.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Set Port.vi
+
+:imgpath: Serial Device.lvclass_Set Port.vi.png
+image::{imgpath}[Serial Device.lvclass:Set Port.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:RADCV3.vi
+
+:imgpath: Serial Device.lvclass_RADCV3.vi.png
+image::{imgpath}[Serial Device.lvclass:RADCV3.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Close Connection.vi
+
+:imgpath: Serial Device.lvclass_Close Connection.vi.png
+image::{imgpath}[Serial Device.lvclass:Close Connection.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Command.vi
+
+:imgpath: Serial Device.lvclass_Command.vi.png
+image::{imgpath}[Serial Device.lvclass:Command.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Initialize.vi
+
+:imgpath: Serial Device.lvclass_Initialize.vi.png
+image::{imgpath}[Serial Device.lvclass:Initialize.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Send Command.vi
+
+:imgpath: Serial Device.lvclass_Send Command.vi.png
+image::{imgpath}[Serial Device.lvclass:Send Command.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Serial Device.lvclass:Untitled 1 (SubVI).vi
+
+:imgpath: Serial Device.lvclass_Untitled 1 (SubVI).vi.png
+image::{imgpath}[Serial Device.lvclass:Untitled 1 (SubVI).vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== ARDUINO.lvclass
+
+
+==== Cypress.lvclass
+
+===== Cypress.lvclass:RADCV3.vi
+
+:imgpath: Cypress.lvclass_RADCV3.vi.png
+image::{imgpath}[Cypress.lvclass:RADCV3.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== Cypress.lvclass:READ ADC.vi
+
+:imgpath: Cypress.lvclass_READ ADC.vi.png
+image::{imgpath}[Cypress.lvclass:READ ADC.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== NXP.lvclass
+
+===== NXP.lvclass:RADCV3.vi
+
+:imgpath: NXP.lvclass_RADCV3.vi.png
+image::{imgpath}[NXP.lvclass:RADCV3.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+==== TI.lvclass
+
+
+==== Read ADC UI Msg.lvclass
+
+===== UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Send Read ADC UI.vi
+
+:imgpath: UI ACTOR.lvlib_Read ADC UI Msg.lvclass_Send Read ADC UI.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Send Read ADC UI.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_Read ADC UI Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Read ADC UI Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Select Channel Msg.lvclass
+
+===== UI ACTOR.lvlib:Select Channel Msg.lvclass:Send Select Channel.vi
+
+:imgpath: UI ACTOR.lvlib_Select Channel Msg.lvclass_Send Select Channel.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Select Channel Msg.lvclass:Send Select Channel.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:Select Channel Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_Select Channel Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Select Channel Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== update VISA Msg.lvclass
+
+===== UI ACTOR.lvlib:update VISA Msg.lvclass:Send update VISA.vi
+
+:imgpath: UI ACTOR.lvlib_update VISA Msg.lvclass_Send update VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:update VISA Msg.lvclass:Send update VISA.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:update VISA Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_update VISA Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:update VISA Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== Write and Read VISA Msg.lvclass
+
+===== UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Send Write and Read VISA.vi
+
+:imgpath: UI ACTOR.lvlib_Write and Read VISA Msg.lvclass_Send Write and Read VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Send Write and Read VISA.vi]
+
+*Description:*
+++++
+This VI sends the message to an actor.
+++++
+
+===== UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Do.vi
+
+:imgpath: UI ACTOR.lvlib_Write and Read VISA Msg.lvclass_Do.vi.png
+image::{imgpath}[UI ACTOR.lvlib:Write and Read VISA Msg.lvclass:Do.vi]
+
+*Description:*
+++++
+This VI delivers the message to the actor by calling the appropriate method(s) on the actor.
+++++
+
+==== UI ACTOR.lvclass
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC UI.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Read ADC UI.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC UI.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Select Channel.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Select Channel.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Select Channel.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:update VISA.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_update VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:update VISA.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Status Puerto COM.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Status Puerto COM.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Status Puerto COM.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Write and Read VISA.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Write and Read VISA.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Write and Read VISA.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Read Serial Device.lvclass.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Read Serial Device.lvclass.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Read Serial Device.lvclass.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Write Serial Device.lvclass.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Write Serial Device.lvclass.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Write Serial Device.lvclass.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+===== UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC.vi
+
+:imgpath: UI ACTOR.lvlib_UI ACTOR.lvclass_Read ADC.vi.png
+image::{imgpath}[UI ACTOR.lvlib:UI ACTOR.lvclass:Read ADC.vi]
+
+*Description:*
+No description found (add content in VI description)
+
+== Legal Information
+
+=== Document creation
+
+This document has been generated using the following tools.
+
+==== Antidoc
+
+Project website: https://wovalab.gitlab.io/open-source/labview-doc-generator/[Antidoc] 
+
+Maintainer website: https://wovalab.com[Wovalab] 
+
+BSD 3-Clause License
+
+Copyright (C) 2019, Wovalab,
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+==== Asciidoc for LabVIEW(TM)
+
+Project website: https://wovalab.gitlab.io/open-source/asciidoc-toolkit/[Asciidoc toolkit] 
+
+Maintainer website: https://wovalab.com[Wovalab] 
+
+BSD 3-Clause License
+
+Copyright (C) 2019, Wovalab,
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+==== Graph Builder
+
+Project website: https://gitlab.com/cgambini/graph-builder[Graph Builder]
+
+BSD 3-Clause License
+
+Copyright (c) 2020, Cyril GAMBINI
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+=== Product used in the project
+
+Antidoc hasn't been able to detect third party products in the project.
+This is the author's responsibility to list any of the missing product used.
